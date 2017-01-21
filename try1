@@ -1,0 +1,26 @@
+<!DOCTYPE html><!--宣告HTML版本,告诉浏览器属于哪种文件-->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Jamie's first try</title>
+</head>
+<body>
+  <h1>Hello, everyone</h1>
+  <P>Wllecom to Jamie's website!
+    <br>
+    Here you can find:
+    <br>
+    <ol>
+      <li>My presonal information
+        <li>My expereince
+          <li>My inrerests
+    </ol>
+    This is my 爱豆:
+    <br>
+    <img src="http://kpopn.niusnews.com/kupload/imgs/default/2015/04/20150424-Park-Bo-Gum-2.jpg"title="男朋友">
+   <br>
+    <p>hope you have a good time ^^</p>
+    </p>
+</body>
+</html>
