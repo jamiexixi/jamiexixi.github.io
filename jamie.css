@@ -1,0 +1,121 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    line-height: 1.4;
+}
+
+html,
+body {
+    height: 100%;
+    min-height: 100%;
+    font-family: Roboto, sans-serif;
+}
+
+main {
+    padding-top: 300px;
+    font-family: arial;
+    background: #eee;
+    min-height: 100%;
+}
+
+.app-header {
+    display: block;
+    background: #3f51b5;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    color: #fff;
+    height: 300px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0);
+    z-index: 99;
+}
+
+.header-content {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.app-toolbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    height: 64pxt;
+    padding: 0 16px;
+    pointer-events: none;
+    font-size: 20px;
+}
+
+#large-toolbar {
+    position: absolute;
+    bottom: 0;
+    transform-origin: left top;
+    margin-bottom: 24px;
+    margin-bottom: 16px;
+    width: 100%;
+}
+
+.small-title,
+.large-title {
+    transform-origin: left top;
+    white-space: nowrap;
+    flex: 1;
+    flex-basis: 0.000000001px;
+    overflow: hidden;
+    font-weight: 400;
+    line-height: 1.5;
+    position: relative;
+}
+
+.small-title {
+    margin-left: 14px;
+    visibility: hidden;
+    opacity: 0;
+    text-shadow: 2px 2px 2px #2d2d35;
+}
+
+.large-title {
+    will-change: transform, opacity;
+    font-size: 40px;
+    font-size: 2em;
+    margin-left: 64px;
+    text-shadow: 2px 2px 2px #2d2d35;
+}
+
+.background-container {
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.background {
+    pointer-events: none;
+    position: absolute;
+    background-size: cover;
+    height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    will-change: transform, opacity;
+}
+
+#background-back {
+    background-image: url(https://s-media-cache-ak0.pinimg.com/originals/3a/52/92/3a5292d69ca2ba514fbbb428a7fa7f6d.jpg);
+    background-position: left center;
+    opacity: 0;
+    visibility: hidden;
+}
+
+#background-front {
+    background-image: url(https://s-media-cache-ak0.pinimg.com/originals/3a/52/92/3a5292d69ca2ba514fbbb428a7fa7f6d.jpg);
+    background-position: left center;
+}
