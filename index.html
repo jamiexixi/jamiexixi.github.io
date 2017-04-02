@@ -18,7 +18,14 @@
  <link rel="stylesheet" href="jamie.css" type="text/css" />
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
+<script>
+  window.console = window.console || function(t) {};
+</script>
+	<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
 </head>
 
 
@@ -130,7 +137,104 @@
       <a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a>
     </span>
   </div>
+	    <script>
+    //scroll to top on refresh//
+window.onbeforeunload = function() {
+  window.scrollTo(0, 0);
+}
+
+jQuery(document).ready(function($) {
+
+  $(window).load(function() {
+    $('.loading').delay(2000).fadeOut('slow', function() {
+      $(this).remove();
+    });
+    setTimeout(function() {
+      $('.landing').addClass('loaded');
+    }, 2000);
+    setTimeout(function() {
+      $('body').addClass('loaded');
+    }, 2000);
+
+  });
+
+  window.addEventListener('load', function() {
+
+    var one = document.querySelector('.one');
+    var two = document.querySelector('.two');
+    var three = document.querySelector('.three');
+    delay = 2500;
+
+    setTimeout(function() {
+      $('.content-1').addClass('loaded');
+    }, 2000);
+
+    var animation = function() {
+      setTimeout(function() {
+        one.style.top = '50%';
+      }, delay);
+      setTimeout(function() {
+        one.style.top = '100%';
+      }, delay * 5);
+
+      setTimeout(function() {
+        two.style.top = '50%';
+      }, delay * 6);
+      setTimeout(function() {
+        two.style.top = '100%';
+      }, delay * 11);
+
+      setTimeout(function() {
+        three.style.top = '50%';
+      }, delay * 12);
+      setTimeout(function() {
+        three.style.top = '100%';
+      }, delay * 17);
+    };
+    animation();
+    setInterval(animation, delay * 18);
+  });
+
+  window.onscroll = function() {
+    if ($(this).scrollTop() > 1) {
+      $('header').addClass("resize");
+    } else {
+      $('header').removeClass("resize");
+    }
+  };
+
+  $(window).scroll(function() {
+    $('.hideme').each(function(i) {
+      var bottom_of_object = $(this).offset().top + $(this).outerHeight();
+      var bottom_of_window = $(window).scrollTop() + $(window).height();
+      if (bottom_of_window > bottom_of_object) {
+        $(this).animate({
+          'opacity': '1'
+        }, 1250);
+      }
+    });
+  });
+
+  $(".mouseScroll").click(function() {
+    $('html, body').animate({
+      scrollTop: $(".about").offset().top - 150
+    }, 800);
+  });
+
+  window.onload = function() {
+    $('.button_container').click(function() {
+      $('.button_container').toggleClass('active');
+      $('.overlay').toggleClass('open');
+      $('body').toggleClass('active');
+    });
+  }
+
+});
+  //# sourceURL=pen.js
+  </script>
+	    <script src="//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js"></script>
 
   <script src="jamie.js"></script>
+	    <script src="https://production-assets.codepen.io/assets/editor/full/full_page_renderer-c00eb7b77ad7358fd5c575e853215c03db432330e6991a14ff471d01926a4976.js"></script>
 
 </body>
