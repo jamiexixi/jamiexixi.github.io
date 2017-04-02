@@ -1,97 +1,92 @@
-TweenLite.defaultEase = Linear.easeNone;
-
-var header = document.querySelector("#app-header");
-var bgBack = document.querySelector("#background-back");
-var bgFront = document.querySelector("#background-front");
-var toolbar = document.querySelector("#small-toolbar");
-var largeTitle = document.querySelector("#large-title");
-var smallTitle = document.querySelector("#small-title");
-
-var deltaHeight = header.offsetHeight - toolbar.offsetHeight;
-
-var rect1 = smallTitle.getBoundingClientRect();
-var rect2 = largeTitle.getBoundingClientRect();
-
-var scale = rect1.height / rect2.height;
-var x = rect1.left - rect2.left;
-var y = rect1.top - rect2.top;
-
-var headerAnimation = new TimelineLite({
-        paused: true
-    })
-    .to(largeTitle, 1, {
-        scale: scale,
-        x: x,
-        y: deltaHeight + y
-    }, 0)
-    .to(header, 1, {
-        y: -deltaHeight
-    }, 0)
-    .to(toolbar, 1, {
-        y: deltaHeight
-    }, 0)
-    .to(bgBack, 1, {
-        y: deltaHeight / 2
-    }, 0)
-    .to(bgFront, 1, {
-        y: deltaHeight / 2
-    }, 0)
-    .to(bgBack, 1, {
-        autoAlpha: 1
-    }, 0)
-    .to(bgFront, 1, {
-        autoAlpha: 0
-    }, 0)
-    .set(smallTitle, {
-        autoAlpha: 1
-    }, 1)
-    .set(largeTitle, {
-        autoAlpha: 0
-    }, 1);
-
-var shadowAnimation = TweenLite.to(header, 0.4, {
-    boxShadow: "0 2px 5px rgba(0,0,0,0.6)",
-    ease: Power1.easeOut
-}).reverse();
-
-var progress = 0;
-var requestId = null;
-var reversed = true;
-
-
-update();
-window.addEventListener("scroll", requestUpdate);
-
-function requestUpdate() {
-    if (!requestId) {
-        requestId = requestAnimationFrame(update);
-    }
+//scroll to top on refresh//
+window.onbeforeunload = function() {
+  window.scrollTo(0, 0);
 }
 
-function update() {
+jQuery(document).ready(function($) {
 
-    var scroll = window.pageYOffset;
+  $(window).load(function() {
+    $('.loading').delay(2000).fadeOut('slow', function() {
+      $(this).remove();
+    });
+    setTimeout(function() {
+      $('.landing').addClass('loaded');
+    }, 2000);
+    setTimeout(function() {
+      $('body').addClass('loaded');
+    }, 2000);
 
-    if (scroll < deltaHeight) {
-        progress = scroll < 0 ? 0 : scroll / deltaHeight;
-        reversed = true;
+  });
+
+  window.addEventListener('load', function() {
+
+    var one = document.querySelector('.one');
+    var two = document.querySelector('.two');
+    var three = document.querySelector('.three');
+    delay = 2500;
+
+    setTimeout(function() {
+      $('.content-1').addClass('loaded');
+    }, 2000);
+
+    var animation = function() {
+      setTimeout(function() {
+        one.style.top = '50%';
+      }, delay);
+      setTimeout(function() {
+        one.style.top = '100%';
+      }, delay * 5);
+
+      setTimeout(function() {
+        two.style.top = '50%';
+      }, delay * 6);
+      setTimeout(function() {
+        two.style.top = '100%';
+      }, delay * 11);
+
+      setTimeout(function() {
+        three.style.top = '50%';
+      }, delay * 12);
+      setTimeout(function() {
+        three.style.top = '100%';
+      }, delay * 17);
+    };
+    animation();
+    setInterval(animation, delay * 18);
+  });
+
+  window.onscroll = function() {
+    if ($(this).scrollTop() > 1) {
+      $('header').addClass("resize");
     } else {
-        progress = 1;
-        reversed = false;
+      $('header').removeClass("resize");
     }
+  };
 
-    headerAnimation.progress(progress);
-    shadowAnimation.reversed(reversed);
+  $(window).scroll(function() {
+    $('.hideme').each(function(i) {
+      var bottom_of_object = $(this).offset().top + $(this).outerHeight();
+      var bottom_of_window = $(window).scrollTop() + $(window).height();
+      if (bottom_of_window > bottom_of_object) {
+        $(this).animate({
+          'opacity': '1'
+        }, 1250);
+      }
+    });
+  });
 
-    requestId = null;
-}
+  $(".mouseScroll").click(function() {
+    $('html, body').animate({
+      scrollTop: $(".about").offset().top - 150
+    }, 800);
+  });
 
-function cloneCards(count) {
+  window.onload = function() {
+    $('.button_container').click(function() {
+      $('.button_container').toggleClass('active');
+      $('.overlay').toggleClass('open');
+      $('body').toggleClass('active');
+    });
+  }
 
-    var main = document.querySelector("main");
-    var card = document.querySelector(".buzhidaoneirong");
-
-    for (var i = 0; i < count; i++) {
-        main.appendChild(card.cloneNode(true));
-    }
-}
+});
